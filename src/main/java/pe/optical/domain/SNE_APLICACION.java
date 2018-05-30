@@ -2,9 +2,20 @@ package pe.optical.domain;
 
 import java.util.Date;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import pe.optical.domain.base.EntityBase;
 
-public class SNE_APLICACION extends EntityBase {	
+@Document(collection = "SNE_APLICACIONES")
+public class SNE_APLICACION extends EntityBase {
+	
+	public static final String COLLECTION_NAME = "SNE_APLICACIONES";
+	
+	public static final String NOMBRE_APLICACION_FIELD = "SNEV_NOMBRE_APLICACION";
+	public static final String DESCRIPCION_ERROR_FIELD = "SNEV_DESCRIPCION_ERROR";
+	public static final String ESTADO_FIELD = "SNEN_ESTADO";
+	public static final String FECHA_REGISTRO_FIELD = "SNED_FECHA_REGISTRO";
+		
 	private String SNEV_NOMBRE_APLICACION;
 	private String SNEV_DESCRIPCION_ERROR;
 	private int SNEN_ESTADO;

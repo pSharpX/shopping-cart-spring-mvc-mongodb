@@ -6,7 +6,7 @@
 	<artifactId>Optical.SchedulerSNE</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Optical.SchedulerSNE</name>
+	<name>${application.name}</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -15,10 +15,15 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<spring.version>5.0.6.RELEASE</spring.version>
+		<aspectj.version>1.9.1</aspectj.version>
 		<mongodb.version>3.8.0-beta2</mongodb.version>
 		<mongodb.spring.version>2.0.7.RELEASE</mongodb.spring.version>
 		<javamail.version>1.6.1</javamail.version>
 		<jackson.version>2.9.5</jackson.version>
+		<log4j2.version>2.8.2</log4j2.version>
+
+		<application.name>Optical.SchedulerSNE</application.name>
+		<application.version>0.0.1-SNAPSHOT</application.version>
 	</properties>
 
 	<dependencies>
@@ -67,6 +72,19 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- logging dependency -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4j2.version}</version>
+		</dependency>
+		<!-- logging dependency -->
+
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -95,6 +113,25 @@
 			<version>${spring.version}</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${aspectj.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspectj.version}</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
 		<dependency>
 			<groupId>org.mongodb</groupId>
@@ -108,7 +145,7 @@
 			<artifactId>spring-data-mongodb</artifactId>
 			<version>${mongodb.spring.version}</version>
 		</dependency>
-
+		
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -164,6 +201,18 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>9.4.9.v20180320</version>
+				<configuration>
+					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<webApp>
+						<contextPath>/${application.name}</contextPath>
+					</webApp>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

@@ -10,49 +10,48 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import pe.optical.application.CustomAuditable;
-import pe.optical.converter.AplicacionConverter;
-import pe.optical.dto.AplicacionDto;
-import pe.optical.repository.AplicacionRepository;
-//import pe.optical.repository.spring.AplicacionSpringRepository;
-import pe.optical.service.AplicacionService;
+import pe.optical.converter.MailConverter;
+import pe.optical.dto.MailDto;
+import pe.optical.repository.MailRepository;
+import pe.optical.service.MailService;
 
 @Service
-public class AplicacionServiceImpl implements AplicacionService, CustomAuditable {
+public class MailServiceImpl implements MailService, CustomAuditable {
 
 	@Autowired
 //	@Qualifier("springDataRepository")
 	@Qualifier("defaultRepository")
-	private AplicacionRepository aplicacionRepository;
+	private MailRepository mailRepository;
 	
 	@Autowired
-	private AplicacionConverter aplicacionConverter;
+	private MailConverter mailConverter;
 	
 	@Override
-	public AplicacionDto buscar(ObjectId id) {
+	public MailDto buscar(ObjectId id) {
 		// TODO Auto-generated method stub
-		return aplicacionConverter.map(aplicacionRepository.buscar(id));
+		return null;
 	}
 
 	@Override
-	public List<AplicacionDto> obtenerTodos() {
+	public List<MailDto> obtenerTodos() {
 		// TODO Auto-generated method stub
-		return aplicacionConverter.mapToListOf(aplicacionRepository.obtenerTodos());
+		return null;
 	}
 
 	@Override
-	public void crear(AplicacionDto object) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void actualizar(AplicacionDto object) {
+	public void crear(MailDto object) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void eliminar(AplicacionDto object) {
+	public void actualizar(MailDto object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void eliminar(MailDto object) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -62,4 +61,5 @@ public class AplicacionServiceImpl implements AplicacionService, CustomAuditable
 		// TODO Auto-generated method stub
 		return LogManager.getLogger(getClass());
 	}
+
 }
