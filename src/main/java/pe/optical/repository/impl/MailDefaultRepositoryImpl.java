@@ -3,19 +3,21 @@ package pe.optical.repository.impl;
 import java.util.List;
 
 import org.bson.types.ObjectId;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.mongodb.client.MongoDatabase;
+//import com.mongodb.client.MongoDatabase;
 
 import pe.optical.domain.SNE_MAIL;
 import pe.optical.repository.MailRepository;
 
-@Repository("defaultRepository")
+@Repository
+@Qualifier("defaultRepository")
 public class MailDefaultRepositoryImpl implements MailRepository{
 
-	@Autowired
-	private MongoDatabase mongoDatabase;
+//	@Autowired
+//	private MongoDatabase mongoDatabase;
 	
 	@Override
 	public SNE_MAIL buscar(ObjectId id) {

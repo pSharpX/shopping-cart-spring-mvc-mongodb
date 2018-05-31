@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 //import org.springframework.data.mongodb.core.query.Update;
@@ -16,7 +17,8 @@ import org.springframework.stereotype.Repository;
 import pe.optical.domain.SNE_APLICACION;
 import pe.optical.repository.spring.AplicacionSpringRepository;
 
-@Repository("springDataRepository")
+@Repository
+@Qualifier("springDataRepository")
 public class AplicacionSpringRepositoryImpl implements AplicacionSpringRepository {
 	
 	@Autowired
@@ -24,7 +26,6 @@ public class AplicacionSpringRepositoryImpl implements AplicacionSpringRepositor
 
 	@Override
 	public SNE_APLICACION buscar(ObjectId id) {
-		// TODO Auto-generated method stub
 		//Query query = new Query(where("id").is(id));
 		//SNE_APLICACION aplicacion = mongoOps.findOne(query, SNE_APLICACION.class);
 		SNE_APLICACION aplicacion = mongoOps.findById(id, SNE_APLICACION.class);
@@ -33,20 +34,17 @@ public class AplicacionSpringRepositoryImpl implements AplicacionSpringRepositor
 
 	@Override
 	public List<SNE_APLICACION> obtenerTodos() {
-		// TODO Auto-generated method stub
 		List<SNE_APLICACION> collection =  mongoOps.findAll(SNE_APLICACION.class);
 		return collection;
 	}
 
 	@Override
 	public void crear(SNE_APLICACION object) {
-		// TODO Auto-generated method stub
 		mongoOps.insert(object);
 	}
 
 	@Override
 	public void actualizar(SNE_APLICACION object) {
-		// TODO Auto-generated method stub
 		Query query = new Query(where("id").is(object.getId()));
 		//Update update = new Update().set(key, value);
 		//mongoOps.update(query, update, SNE_APLICACION.class);
@@ -62,7 +60,6 @@ public class AplicacionSpringRepositoryImpl implements AplicacionSpringRepositor
 
 	@Override
 	public void eliminar(SNE_APLICACION object) {
-		// TODO Auto-generated method stub
 		mongoOps.remove(object);
 	}
 

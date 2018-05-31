@@ -6,6 +6,7 @@ import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.client.FindIterable;
@@ -15,7 +16,8 @@ import com.mongodb.client.MongoDatabase;
 import pe.optical.domain.SNE_APLICACION;
 import pe.optical.repository.AplicacionRepository;
 
-@Repository("defaultRepository")
+@Repository
+@Qualifier("defaultRepository")
 public class AplicacionDefaultRepositoryImpl implements AplicacionRepository {
 	
 	@Autowired

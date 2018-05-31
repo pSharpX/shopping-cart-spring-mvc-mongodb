@@ -1,6 +1,12 @@
 package pe.optical.dto.base;
 
-public abstract class DtoBase {
+import java.io.Serializable;
+
+public abstract class DtoBase implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1647072142263251165L;
 	protected String id;
 
 	public String getId() {

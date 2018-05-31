@@ -7,6 +7,7 @@ import java.util.Objects;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
@@ -14,7 +15,8 @@ import org.springframework.stereotype.Repository;
 import pe.optical.domain.SNE_MAIL;
 import pe.optical.repository.spring.MailSpringRepository;
 
-@Repository("springDataRepository")
+@Repository
+@Qualifier("springDataRepository")
 public class MailSpringRepositoryImpl implements MailSpringRepository {
 
 	@Autowired
@@ -22,27 +24,23 @@ public class MailSpringRepositoryImpl implements MailSpringRepository {
 
 	@Override
 	public SNE_MAIL buscar(ObjectId id) {
-		// TODO Auto-generated method stub
 		SNE_MAIL mail = mongoOps.findById(id, SNE_MAIL.class);
 		return mail;
 	}
 
 	@Override
 	public List<SNE_MAIL> obtenerTodos() {
-		// TODO Auto-generated method stub
 		List<SNE_MAIL> collection =  mongoOps.findAll(SNE_MAIL.class);
 		return collection;
 	}
 
 	@Override
 	public void crear(SNE_MAIL object) {
-		// TODO Auto-generated method stub
 		mongoOps.insert(object);
 	}
 
 	@Override
 	public void actualizar(SNE_MAIL object) {
-		// TODO Auto-generated method stub
 		Query query = new Query(where("id").is(object.getId()));
 		//Update update = new Update().set(key, value);
 		//mongoOps.update(query, update, SNE_APLICACION.class);
@@ -62,10 +60,7 @@ public class MailSpringRepositoryImpl implements MailSpringRepository {
 
 	@Override
 	public void eliminar(SNE_MAIL object) {
-		// TODO Auto-generated method stub
 		mongoOps.remove(object);
-	}
-	
-	
+	}	
 
 }

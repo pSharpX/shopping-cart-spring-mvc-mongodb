@@ -2,10 +2,13 @@ package pe.optical.domain;
 
 import java.util.Date;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import com.mongodb.DBRef;
 
 import pe.optical.domain.base.EntityBase;
 
+@Document(collection = "SNE_MAIL")
 public class SNE_MAIL extends EntityBase {
 	private DBRef SNEI_CODIGO_APLICACION;
 	private String SNEV_MAIL_ORIGEN_MASCARA;

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -19,46 +18,40 @@ import pe.optical.service.MailService;
 public class MailServiceImpl implements MailService, CustomAuditable {
 
 	@Autowired
-//	@Qualifier("springDataRepository")
-	@Qualifier("defaultRepository")
+	@Qualifier("springDataRepository")
+	// @Qualifier("defaultRepository")
 	private MailRepository mailRepository;
-	
+
 	@Autowired
 	private MailConverter mailConverter;
-	
+
 	@Override
-	public MailDto buscar(ObjectId id) {
-		// TODO Auto-generated method stub
-		return null;
+	public MailDto buscar(String id) {
+		return mailConverter.map(mailRepository.buscar(mailConverter.convertIdFrom(id)));
 	}
 
 	@Override
 	public List<MailDto> obtenerTodos() {
-		// TODO Auto-generated method stub
-		return null;
+		return mailConverter.mapToListOf(mailRepository.obtenerTodos());
 	}
 
 	@Override
 	public void crear(MailDto object) {
-		// TODO Auto-generated method stub
-		
+		mailRepository.crear(mailConverter.map(object));
 	}
 
 	@Override
 	public void actualizar(MailDto object) {
-		// TODO Auto-generated method stub
-		
+		mailRepository.actualizar(mailConverter.map(object));
 	}
 
 	@Override
 	public void eliminar(MailDto object) {
-		// TODO Auto-generated method stub
-		
+		mailRepository.eliminar(mailConverter.map(object));
 	}
 
 	@Override
 	public Logger getLogger() {
-		// TODO Auto-generated method stub
 		return LogManager.getLogger(getClass());
 	}
 

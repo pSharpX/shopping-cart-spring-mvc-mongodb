@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -20,17 +19,17 @@ import pe.optical.service.AplicacionService;
 public class AplicacionServiceImpl implements AplicacionService, CustomAuditable {
 
 	@Autowired
-//	@Qualifier("springDataRepository")
-	@Qualifier("defaultRepository")
+	@Qualifier("springDataRepository")
+	// @Qualifier("defaultRepository")
 	private AplicacionRepository aplicacionRepository;
 	
 	@Autowired
 	private AplicacionConverter aplicacionConverter;
 	
 	@Override
-	public AplicacionDto buscar(ObjectId id) {
+	public AplicacionDto buscar(String id) {
 		// TODO Auto-generated method stub
-		return aplicacionConverter.map(aplicacionRepository.buscar(id));
+		return aplicacionConverter.map(aplicacionRepository.buscar(aplicacionConverter.convertIdFrom(id)));
 	}
 
 	@Override
