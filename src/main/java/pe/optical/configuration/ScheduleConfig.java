@@ -1,10 +1,10 @@
 package pe.optical.configuration;
 
-import org.omg.CORBA.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -12,11 +12,11 @@ import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 
 @Configuration
-@ComponentScan(basePackages = {"pe.optical.task"})
-@PropertySource("classpath:schedule.properties")
+@ComponentScan("pe.optical.task")
+//@PropertySource("classpath:schedule.properties")
 @EnableAsync
 @EnableScheduling
-public class ScheduleConfig implements SchedulingConfigurer, AsyncConfigurer {
+public class ScheduleConfig implements AsyncConfigurer, SchedulingConfigurer{
 	
 	@Autowired
 	private Environment env;
@@ -26,5 +26,5 @@ public class ScheduleConfig implements SchedulingConfigurer, AsyncConfigurer {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 }
